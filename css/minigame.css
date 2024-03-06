@@ -1,0 +1,42 @@
+/* Michael Todd u23540223 */
+
+canvas {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+body {
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.laptop-screen {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#gameCanvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#playerHealth, #playerScore, #enemyHealth, #gameOver {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 200px;
+    height: 20px;
+    border-radius: 10px;
+    background: #ddd;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
