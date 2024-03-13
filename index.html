@@ -4,16 +4,19 @@
 <html>
 <head>
     <title>Geometric Guardian | Interactive Trailer</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal.css">
 </head>
 <body>
-    <h1>Where are we, there must be some way to move around here?</h1>
-
     <div class="arrow up">↑</div>
     <div class="arrow down">↓</div>
     <div class="arrow left">←</div>
     <div class="arrow right">→</div>
-    <button class="futuristic-button" onclick="window.location.href = 'portal.html';">Go to Portal</button>
+    <a href="portal.html">
+    <div class="index-portal" onmouseover="hoverOnPortal()">
+        <div class="portal-content"></div>
+    </div>
+    </a>
 </body>
 </html>
 

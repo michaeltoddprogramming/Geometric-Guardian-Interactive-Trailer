@@ -4,7 +4,10 @@ const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
 const playerImage = new Image();
-playerImage.src = 'img/Character.png';
+playerImage.src = 'img/Geometron.svg';
+
+const EnemyImage = new Image();
+EnemyImage.src = 'img/Enemy.svg';
 
 const playerBullets = [];
 const enemyBullets = [];
@@ -12,16 +15,15 @@ const enemyBullets = [];
 const enemy = {
 	x: Math.random() * canvas.width,
 	y: 150,
-	width: 50,
-	height: 50,
-	health: 100,
-	color: "red",
+	width: 100,
+	height: 100,
+	health: 80,
+	// color: "red",
 	speed: 2,
 	directionX: Math.random() < 0.5 ? -1 : 1,
 	draw: function() {
-		ctx.fillStyle = this.color;
-		ctx.fillRect(this.x, this.y, this.width, this.height);
-	},
+        ctx.drawImage(EnemyImage, this.x, this.y, this.width, this.height);
+    },
 	update: function() {
 		this.x += this.speed * this.directionX;
 		if (this.x < 0 || this.x + this.width > canvas.width) this.directionX *= -1;
@@ -31,9 +33,9 @@ const enemy = {
 			const bullet = {
 				x: this.x + this.width / 2,
 				y: this.y + this.height,
-				width: 10,
-				height: 10,
-				color: "green",
+				width: 80,
+				height: 30,
+				color: "red",
 				draw: function() {
 					ctx.fillStyle = this.color;
 					ctx.beginPath();
@@ -56,8 +58,8 @@ const enemy = {
 
 const player = {
 	x: canvas.width / 2,
-	y: canvas.height - 50,
-	width: 50,
+	y: canvas.height - 90,
+	width: 100,
 	height: 100,
 	color: "blue",
 	speed: 3,
@@ -66,16 +68,15 @@ const player = {
 	health: 100,
 	score: 0,
 	draw: function() {
-		ctx.fillStyle = this.color;
-		ctx.fillRect(this.x, this.y, this.width, this.height);
-	},
+        ctx.drawImage(playerImage, this.x, this.y, this.width, this.height);
+    },
 	shoot: function() {
 		const bullet = {
-			x: this.x + this.width / 2,
-			y: this.y,
+			x: this.x + 63  ,
+			y: this.y + 20,
 			width: 10,
 			height: 10,
-			color: "red",
+			color: "lightblue",
 			draw: function() {
 				ctx.fillStyle = this.color;
 				ctx.beginPath();
