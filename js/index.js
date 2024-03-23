@@ -4,8 +4,26 @@ var elementToMove = document.querySelector('body');
 
 var portal = document.querySelector('.index-portal');
 
-portal.addEventListener('click', function() {
-    alert('Your about to get closer to the portal be careful!');
+portal.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    Swal.fire({
+        title: 'You are about to get closer to the portal, be careful!',
+        background: 'green',
+        confirmButtonText: 'OK',
+        customClass: {
+            title: 'my-title-class',
+            content: 'my-content-class',
+            confirmButton: 'my-confirm-button-class'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.body.classList.add('fade-out');
+            setTimeout(function() {
+                window.location.href = 'portal.html';
+            }, 0);
+        }
+    });
 });
 
 setTimeout(function() {

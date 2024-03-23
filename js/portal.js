@@ -5,18 +5,54 @@ function hoverOnPortal() {
 }
 
 function promptOnClick() {
-	var confirmation = confirm("Are you sure you want to make a bad decision?");
-	if (confirmation) {
-		alert("Prepare yourself!");
-		document.querySelector('.portal').classList.add('zoom-in');
-		setTimeout(function() {
-			splitScreen();
-			animateLine();
-			flashScreen();
-		}, 4000);
-	} else {
-		alert("Too late to think about it!");
-	}
+    Swal.fire({
+        title: 'Are you sure you want to make a bad decision?',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
+        background: 'green',
+        customClass: {
+            title: 'my-title-class',
+            content: 'my-content-class',
+            confirmButton: 'my-confirm-button-class',
+            cancelButton: 'my-cancel-button-class'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+			var imageUrls = ["img/Enemy.svg", "img/Geometron.svg", ];
+			for (var i = 0; i < imageUrls.length; i++) {
+				var img = new Image();
+				img.onload = function() {
+					this.style.position = 'fixed';
+					this.style.top = '0%';
+					this.style.left = '0%';
+					this.style.transform = 'translate(-50%, -50%)';
+					document.body.appendChild(this);
+				};
+				img.src = imageUrls[i];
+				img.classList.add("flying-image");
+			}
+					} else {
+            Swal.fire({
+                title: 'Too late to think about it!',
+                background: 'green',
+                confirmButtonText: 'OK',
+                customClass: {
+                    title: 'my-title-class',
+                    content: 'my-content-class',
+                    confirmButton: 'my-confirm-button-class'
+                }
+            });
+        }
+
+        document.querySelector('.portal').classList.add('zoom-in');
+        setTimeout(function() {
+            splitScreen();
+            animateLine();
+            flashScreen();
+            window.location.href = 'minigame.html';
+        }, 8000);
+    });
 }
 
 function splitScreen() {
@@ -42,16 +78,19 @@ function animateLine() {
 }
 
 function flashScreen() {
-	var flash = document.createElement("div");
-	flash.classList.add("flash");
-	document.body.appendChild(flash);
+    var flash = document.createElement("div");
+    flash.classList.add("flash");
+    document.body.appendChild(flash);
 
-	setTimeout(function() {
-		flash.style.opacity = "0";
-		setTimeout(function() {
-			window.location.href = "minigame.html";
-		}, 5000);
-	}, 5000);
+    setTimeout(function() {
+        flash.style.opacity = "1";
+        setTimeout(function() {
+            flash.style.opacity = "0";
+            setTimeout(function() {
+                window.location.href = "minigame.html";
+            }, 1000);
+        }, 1000);
+    }, 5000);
 }
 
 for (var i = 0; i < 10; i++) {
@@ -69,3 +108,4 @@ for (var i = 0; i < 10; i++) {
 	shape.style.left = Math.random() * window.innerWidth + "px";
 	document.body.appendChild(shape);
 }
+
